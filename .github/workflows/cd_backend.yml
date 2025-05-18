@@ -15,3 +15,11 @@ jobs:
           with :
             username : ${{ secrets.DOCKERHUB_USERNAME }}
             password : ${{ secrets.DOCKERHUB_TOKEN }} 
+
+        - name : Build And Push
+          uses : docker/build-push-action@v4
+          with:
+            context : .
+            file : ./Docker/Dockerfile.backend
+            push : true
+            tags : atulshukla1021/monrepodeploy:${{ github.sha }}
