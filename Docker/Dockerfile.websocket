@@ -1,0 +1,18 @@
+FROM oven/bun:1
+
+WORKDIR  /user/src/app
+
+COPY ./package ./package
+COPY ./bun.lock  ./bub.lock
+
+COPY ./package.json ./package.json
+COPY  ./turbo.json /turbo.json
+
+COPY ./app/websocket ./app/websocket
+
+COPY . .
+RUN bun install
+RUN bun run db:migrate
+
+EXPOSE 8081
+CMD [ "bun" , "run", "start:webstocket"]

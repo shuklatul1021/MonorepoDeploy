@@ -1,0 +1,28 @@
+{
+  "name": "Deploymonorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "db:migarte" : "cd packages/db && npx prisma generate && cd ../..",
+    "start:frontend" : "cd apps/frontend && bun run start",
+    "start:backend" : "cd apps/backend && bun run start",
+    "start:webstocket" : "cd apps/webstocket && bun run start" 
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.3",
+    "typescript": "5.8.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "bun@1.2.13",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
