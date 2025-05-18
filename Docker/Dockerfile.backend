@@ -8,7 +8,7 @@ COPY ./bun.lock  ./bub.lock
 COPY ./package.json ./package.json
 COPY  ./turbo.json /turbo.json
 
-COPY ./app/backend ./app/backend
+COPY ./apps/backend ./apps/backend
 
 COPY . .
 RUN bun install
