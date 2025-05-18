@@ -1,25 +1,61 @@
-name: Deploy The Backend
-
+name: Deploy the backend
 on:
   push:
-    branches : [ main ]
-jobs:
+    branches: [ main ]
+jobs: 
   build:
     runs-on: ubuntu-latest
     steps:
-        - name : Checkout The Code
-          uses : actions/checkout@
-          
-        - name: Docker Login
-          uses : docker/login-action@v2
-          with :
-            username : ${{ secrets.DOCKERHUB_USERNAME }}
-            password : ${{ secrets.DOCKERHUB_TOKEN }} 
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
-        - name : Build And Push
-          uses : docker/build-push-action@v4
-          with:
-            context : .
-            file : ./Docker/Dockerfile.backend
-            push : true
-            tags : atulshukla1021/monrepodeploy:${{ github.sha }}
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push 
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Docker/Dockerfile.backend
+          push: true
+          tags: 100xdevs/todo-app-backend:${{ github.sha }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name: Deploy The Backend
+# on:
+#   push:
+#     branches : [ main ]
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#         - name : Checkout The Code
+#           uses : actions/checkout@
+          
+#         - name: Docker Login
+#           uses : docker/login-action@v2
+#           with :
+#             username : ${{ secrets.DOCKERHUB_USERNAME }}
+#             password : ${{ secrets.DOCKERHUB_TOKEN }} 
+
+#         - name : Build And Push
+#           uses : docker/build-push-action@v4
+#           with:
+#             context : .
+#             file : ./Docker/Dockerfile.backend
+#             push : true
+#             tags : atulshukla1021/monrepodeploy:${{ github.sha }}
