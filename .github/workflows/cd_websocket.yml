@@ -1,4 +1,4 @@
-name: Deploy The Frontend
+name: Deploy The Websocket
 on:
   push:
     branches : [ main ]
@@ -19,8 +19,6 @@ jobs:
           uses : docker/build-push-action@v4
           with:
             context : .
-            file : ./Docker/Dockerfile.frontend
-            build-args:
-              DATABASE_URL=${{ secrets.DATABASE_URL }}
+            file : ./Docker/Dockerfile.websocket
             push : true
-            tags : atulshukla1021/monrepodeploy-frontend:${{ github.sha }}
+            tags : atulshukla1021/monrepodeploy-ws:${{ github.sha }}
